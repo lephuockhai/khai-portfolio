@@ -1,6 +1,5 @@
 'use client'
 import { FaUserAstronaut, FaCode, FaLanguage } from "react-icons/fa";
-import clsx from "clsx";
 import React, { useState } from "react";
 import { useLanguage } from "./LanguageContext";
 import { RiFolderZipFill } from "react-icons/ri";

@@ -39,3 +39,26 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.hg
+.git
+.gitmodules
+.svn
+.cache
+.next
+.now
+.npmignore
+.dockerignore
+.gitignore
+.*.swp
+.wafpicke-*
+.lock-wscript
+.env.local
+.env.*.local
+.venv
+.yarn/cache
+npm-debug.log
+config.gypi
+__pycache__
+venv
+CVS
