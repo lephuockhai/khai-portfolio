@@ -1,26 +1,129 @@
-@import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-gray-900 text-gray-100 font-sans;
+}
+
+.tech-glow-js {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#f0db4f] hover:scale-110;
+}
+
+.tech-glow-ts {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#007acc] hover:scale-110;
+}
+
+.tech-glow-py {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#306998] hover:scale-110;
+}
+
+.tech-glow-re {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#61dafb] hover:scale-110;
+}
+
+.tech-glow-rdx {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#764abc] hover:scale-110;
+}
+
+.tech-glow-tw {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#38b2ac] hover:scale-110;
+}
+
+.tech-glow-vue {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#41b883] hover:scale-110;
+}
+
+.tech-glow-node {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#339933] hover:scale-110;
+}
+
+.tech-glow-nest {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#e0234e] hover:scale-110;
+}
+
+.tech-glow-dj {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#092e20] hover:scale-110;
+}
+
+.tech-glow-rest {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#ffffff] hover:scale-110;
+}
+
+.tech-glow-gql {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#e10098] hover:scale-110;
+}
+
+.tech-glow-pg {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#336791] hover:scale-110;
+}
+
+.tech-glow-mongo {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#47a248] hover:scale-110;
+}
+
+.tech-glow-redis {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#dc382d] hover:scale-110;
+}
+
+.tech-glow-jwt {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#fbde23] hover:scale-110;
+}
+
+.tech-glow-git {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#f05032] hover:scale-110;
+}
+
+.tech-glow-github {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#ffffff] hover:scale-110;
+}
+
+.tech-glow-gitlab {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#fca326] hover:scale-110;
+}
+
+.tech-glow-ant {
+  @apply transition-all duration-300 hover:shadow-[0_0_15px_5px_#0170fe] hover:scale-110;
+}
+
+.project-card {
+  @apply bg-gray-800/50 rounded-lg p-6 transition-all duration-300 hover:bg-gray-700/70;
+}
+
+.experience-card {
+  @apply bg-gray-800/30 p-6 rounded-xl border border-gray-700/50 transition-all duration-300 hover:border-green-500/50 hover:shadow-lg hover:shadow-green-500/10;
+}
+
+.timeline-dot {
+  @apply w-5 h-5 bg-gray-900 rounded-full absolute -left-[1.1rem] top-1 border-4 border-green-400 ring-4 ring-gray-900;
+}
+
+.timeline-connector {
+  @apply border-l-2 border-green-700;
+}
+
+.contact-button {
+  @apply inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors shadow-[0_0_10px] hover:shadow-[0_0_20px_5px];
+}
+
+.section-title {
+  @apply text-3xl sm:text-4xl font-bold mb-6 text-green-400 border-b-2 border-green-700 pb-2;
+}
+
+.navbar-glass {
+  background-color: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.bounce-delay1 {
+  animation-delay: 0.1s;
+}
+
+.bounce-delay2 {
+  animation-delay: 0.2s;
+}
+
+.bounce-delay3 {
+  animation-delay: 0.3s;
 }
