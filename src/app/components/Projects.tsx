@@ -39,7 +39,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="max-w-3xl mx-auto py-10 px-2 sm:py-16 sm:px-4">
-      <h2 className="section-title">{language === 'en' ? 'Personal Projects' : 'Dự án cá nhân'}</h2>
+      <h2 className="section-title text-center">{language === 'en' ? 'Personal Projects' : 'Dự án cá nhân'}</h2>
       <div className="space-y-8">
         {currentProjects.map((project, index) => (
           <div key={index} className="project-card">

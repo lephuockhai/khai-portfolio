@@ -1,5 +1,5 @@
 'use client'
-import { FaUserAstronaut, FaCode, FaLanguage } from "react-icons/fa";
+import { FaUserAstronaut, FaCode, FaGlobe } from "react-icons/fa";
 import React, { useState } from "react";
 import { useLanguage } from "./LanguageContext";
 import { RiFolderZipFill } from "react-icons/ri";
@@ -12,7 +12,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navList = [
-    { id: "about", title: language === 'en' ? "About" : "Về tôi", icon: <FaUserAstronaut size={20} /> },
+    { id: "about", title: language === 'en' ? "About" : "Giới thiệu", icon: <FaUserAstronaut size={20} /> },
     { id: "projects", title: language === 'en' ? "Projects" : "Dự án", icon: <FaCode size={20} /> },
     { id: "experience", title: language === 'en' ? "Experience" : "Kinh nghiệm", icon: <RiFolderZipFill size={20} /> },
     { id: "tech", title: language === 'en' ? "Tech Stack" : "Công nghệ", icon: <GiTechnoHeart size={20} /> },
@@ -53,8 +53,9 @@ const Navbar = () => {
                   <span>{item.title}</span>
                 </a>
               ))}
-              <button onClick={toggleLanguage} className="text-white p-2 rounded-md hover:bg-green-700/50">
-                <FaLanguage size={20} />
+              <button onClick={toggleLanguage} className="flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-white hover:bg-green-700/50 duration-300">
+                <FaGlobe size={20} />
+                <span>{language === 'en' ? 'EN' : 'VI'}</span>
               </button>
             </div>
           </div>
@@ -84,7 +85,7 @@ const Navbar = () => {
               </a>
             ))}
             <button onClick={toggleLanguage} className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-base font-medium text-white hover:bg-green-700/50">
-              <FaLanguage size={20} />
+              <FaGlobe size={20} />
               <span>{language === 'en' ? 'Tiếng Việt' : 'English'}</span>
             </button>
           </div>

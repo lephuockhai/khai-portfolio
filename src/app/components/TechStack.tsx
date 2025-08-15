@@ -22,7 +22,7 @@ import {
   SiGitlab,
   SiAntdesign,
   SiGraphql,
-  SiExpress
+  SiExpress,
 } from "react-icons/si";
 
 const techStackList = [
@@ -35,7 +35,7 @@ const techStackList = [
   { title: "VueJS", icon: <SiVuedotjs className="text-green-400" />, glowClass: "tech-glow-vue" },
   { title: "Node.js (ExpressJS)", icon: <SiNodedotjs className="text-green-600" />, glowClass: "tech-glow-node" },
   { title: "NestJS", icon: <SiNestjs className="text-red-500" />, glowClass: "tech-glow-nest" },
-  { title: "Django", icon: <SiDjango className="text-green-800" />, glowClass: "tech-glow-dj" },
+  { title: "Django", icon: <SiDjango className="text-gray-800" />, glowClass: "tech-glow-dj" },
   { title: "RESTful APIs", icon: <SiExpress className="text-gray-400" />, glowClass: "tech-glow-rest" },
   { title: "GraphQL", icon: <SiGraphql className="text-pink-500" />, glowClass: "tech-glow-gql" },
   { title: "PostgreSQL", icon: <SiPostgresql className="text-blue-700" />, glowClass: "tech-glow-pg" },
@@ -52,7 +52,7 @@ const TechStack = () => {
   const { language } = useLanguage();
   return (
     <section id="tech" className="max-w-3xl mx-auto py-10 px-2 sm:py-16 sm:px-4">
-      <h2 className="section-title">{language === 'en' ? 'Tech Stack' : 'Công nghệ sử dụng'}</h2>
+      <h2 className="section-title text-center">{language === 'en' ? 'Tech Stack' : 'Công nghệ sử dụng'}</h2>
       <ul className="flex flex-wrap gap-2 sm:gap-4">
         {techStackList.map((tech) => (
           <li key={tech.title} className={clsx(

@@ -1,6 +1,17 @@
 
 'use client';
 import { useLanguage } from "./LanguageContext";
+import { useState } from 'react';
+import Modal from './Modal';
+
+interface ProjectType {
+  name: string;
+  period: string;
+  description: string;
+  tasks: string[];
+  technologies: string[];
+  link?: string;
+}
 
 const workExperience = {
   en: [
@@ -152,63 +163,165 @@ const workExperience = {
 const Experience = () => {
   const { language } = useLanguage();
   const currentExperience = workExperience[language];
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(null);
+
+  const renderProjectDetails = (project: ProjectType) => (
+    <div>
+      <h3 className="text-2xl md:text-3xl font-bold text-green-300 mb-3">{project.name}</h3>
+      <p className="text-sm text-gray-400 mb-4">{project.period}</p>
+      <p className="text-base text-gray-200 mb-4">{project.description}</p>
+      <div className="mb-4">
+        <h4 className="text-lg font-semibold text-green-400 mb-2">{language === 'en' ? 'Tasks:' : 'Công việc thực hiện:'}</h4>
+        <ul className="list-disc list-inside space-y-2 text-gray-300">
+          {project.tasks.map((task, taskIndex) => (
+            <li key={taskIndex}>{task}</li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4 className="text-lg font-semibold text-green-400 mb-2">{language === 'en' ? 'Technologies:' : 'Công nghệ:'}</h4>
+        <div className="flex flex-wrap gap-2">
+          {project.technologies.map((tech, techIndex) => (
+            <span key={techIndex} className="bg-green-800 px-3 py-1 rounded-full text-sm text-white">{tech}</span>
+          ))}
+        </div>
+      </div>
+      {project.link && (
+        <div className="mt-4">
+          <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline">
+            {language === 'en' ? 'Visit Website' : 'Xem trang web'}
+          </a>
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <section id="experience" className="max-w-5xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
       <h2 className="section-title text-center">{language === 'en' ? 'Work Experience' : 'Kinh nghiệm làm việc'}</h2>
       <div className="relative mt-12">
-        <div className="timeline-connector absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2"></div>
-        {currentExperience.map((job, jobIndex) => (
-          <div key={jobIndex} className={`flex items-center w-full mb-8 ${jobIndex % 2 === 0 ? 'flex-row-reverse' : ''}`}>
-            <div className="w-1/2"></div>
-            <div className={`w-1/2 px-4 ${jobIndex % 2 === 0 ? 'text-left' : 'text-right'}`}>
-              <div className="experience-card">
-                <div className="timeline-dot"></div>
-                <h4 className="text-lg md:text-xl font-bold text-green-300">{job.company}</h4>
-                <p className="text-md text-gray-400">{job.role}</p>
-                <p className="text-sm text-gray-500 mb-4">{job.period}</p>
-                {job.description && (
-                  <p className="text-base text-gray-300 mb-4">{job.description}</p>
-                )}
-                {job.projects.length > 0 && (
-                  <div className="space-y-4 mt-4">
-                    {job.projects.map((project, projectIndex) => (
-                      <div key={projectIndex} className="project-card">
-                        <h5 className="text-md font-semibold text-green-400 mb-2">{project.name}</h5>
-                        <p className="text-xs text-gray-400 mb-2">{project.period}</p>
-                        <p className="text-sm text-gray-300 mb-3">{project.description}</p>
-                        <div className="mb-3">
-                          <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Tasks:' : 'Công việc thực hiện:'}</h6>
-                          <ul className="list-disc list-inside space-y-1 text-left">
-                            {project.tasks.map((task, taskIndex) => (
-                              <li key={taskIndex} className="text-xs text-gray-300">{task}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="mb-2">
-                          <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Technologies:' : 'Công nghệ:'}</h6>
-                          <div className="flex flex-wrap gap-1 justify-start">
-                            {project.technologies.map((tech, techIndex) => (
-                              <span key={techIndex} className="bg-green-800 px-2 py-1 rounded text-xs text-white">{tech}</span>
-                            ))}
+        {/* Desktop Timeline */}
+        <div className="hidden md:block">
+          <div className="timeline-connector absolute top-0 bottom-0 left-1/2 transform -translate-x-1/2"></div>
+          {currentExperience.map((job, jobIndex) => (
+            <div key={jobIndex} className={`flex items-center w-full mb-8 ${jobIndex % 2 === 0 ? 'flex-row-reverse' : ''}`}>
+              <div className="w-1/2"></div>
+              <div className={`w-1/2 px-4 ${jobIndex % 2 === 0 ? 'text-left' : 'text-right'}`}>
+                <div className="experience-card">
+                  <div className="timeline-dot"></div>
+                  <h4 className="text-lg md:text-xl font-bold text-green-300">{job.company}</h4>
+                  <p className="text-md text-gray-400">{job.role}</p>
+                  <p className="text-sm text-gray-500 mb-4">{job.period}</p>
+                  {job.description && (
+                    <p className="text-base text-gray-300 mb-4">{job.description}</p>
+                  )}
+                  {job.projects.length > 0 && (
+                    <div className="space-y-4 mt-4">
+                      {job.projects.map((project, projectIndex) => (
+                        <div 
+                          key={projectIndex} 
+                          className="project-card cursor-pointer hover:bg-gray-800/50 rounded-lg p-2 -m-2 transition"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          <h5 className="text-md font-semibold text-green-400 mb-2">{project.name}</h5>
+                          <p className="text-xs text-gray-400 mb-2">{project.period}</p>
+                          <p className="text-sm text-gray-300 mb-3">{project.description}</p>
+                          <div className="mb-3">
+                            <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Tasks:' : 'Công việc thực hiện:'}</h6>
+                            <ul className="list-disc list-inside space-y-1 text-left">
+                              {project.tasks.map((task, taskIndex) => (
+                                <li key={taskIndex} className="text-xs text-gray-300">{task}</li>
+                              ))}
+                            </ul>
                           </div>
-                        </div>
-                        {project.link && (
-                          <div className="text-left">
-                            <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-green-400 text-xs hover:underline">
-                              {language === 'en' ? 'Link:' : 'Link web:'} {project.link}
-                            </a>
+                          <div className="mb-2">
+                            <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Technologies:' : 'Công nghệ:'}</h6>
+                            <div className="flex flex-wrap gap-1 justify-start">
+                              {project.technologies.map((tech, techIndex) => (
+                                <span key={techIndex} className="bg-green-800 px-2 py-1 rounded text-xs text-white">{tech}</span>
+                              ))}
+                            </div>
                           </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                          {project.link && (
+                            <div className="text-left">
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-green-400 text-xs hover:underline">
+                                {language === 'en' ? 'Link:' : 'Link web:'} {project.link}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* Mobile Timeline */}
+        <div className="md:hidden flex flex-col relative pt-4 pb-2 pl-4">
+          <div className="absolute left-6 top-8 bottom-0 w-1 bg-green-700 z-0"></div>
+          {currentExperience.map((job, jobIndex) => (
+            <div key={jobIndex} className="relative flex items-start mb-8 z-10">
+              <div className="w-6 h-6 bg-green-400 border-4 border-white rounded-full shadow-lg absolute -left-3 top-0">
+              </div>
+              <div className="ml-8 w-full">
+                <div className="experience-card text-left">
+                  <h4 className="text-lg font-bold text-green-300">{job.company}</h4>
+                  <p className="text-md text-gray-400">{job.role}</p>
+                  <p className="text-sm text-gray-500 mb-4">{job.period}</p>
+                  {job.description && (
+                    <p className="text-base text-gray-300 mb-4">{job.description}</p>
+                  )}
+                  {job.projects.length > 0 && (
+                    <div className="space-y-4 mt-4">
+                      {job.projects.map((project, projectIndex) => (
+                        <div 
+                          key={projectIndex} 
+                          className="project-card cursor-pointer hover:bg-gray-800/50 rounded-lg p-2 -m-2 transition"
+                          onClick={() => setSelectedProject(project)}
+                        >
+                          <h5 className="text-md font-semibold text-green-400 mb-2">{project.name}</h5>
+                          <p className="text-xs text-gray-400 mb-2">{project.period}</p>
+                          <p className="text-sm text-gray-300 mb-3">{project.description}</p>
+                          <div className="mb-3">
+                            <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Tasks:' : 'Công việc thực hiện:'}</h6>
+                            <ul className="list-disc list-inside space-y-1 text-left">
+                              {project.tasks.map((task, taskIndex) => (
+                                <li key={taskIndex} className="text-xs text-gray-300">{task}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mb-2">
+                            <h6 className="text-sm font-semibold text-green-400 mb-2">{language === 'en' ? 'Technologies:' : 'Công nghệ:'}</h6>
+                            <div className="flex flex-wrap gap-1 justify-start">
+                              {project.technologies.map((tech, techIndex) => (
+                                <span key={techIndex} className="bg-green-800 px-2 py-1 rounded text-xs text-white">{tech}</span>
+                              ))}
+                            </div>
+                          </div>
+                          {project.link && (
+                            <div className="text-left">
+                              <a href={project.link} target="_blank" rel="noopener noreferrer" className="text-green-400 text-xs hover:underline">
+                                {language === 'en' ? 'Link:' : 'Link web:'} {project.link}
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      <Modal isOpen={selectedProject !== null} onClose={() => setSelectedProject(null)}>
+        {selectedProject && renderProjectDetails(selectedProject)}
+      </Modal>
     </section>
   );
 }
