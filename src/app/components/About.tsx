@@ -28,7 +28,7 @@ const About = () => {
       <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
         <div className="flex-shrink-0">
           <Image
-            src={"/avatar.png"}
+            src={"/avatar-removebg.png"}
             width={180}
             height={180}
             className="rounded-full border-4 border-green-400 shadow-xl object-cover tech-glow"
@@ -57,7 +57,7 @@ const About = () => {
           <div className="hidden md:flex relative items-center justify-between w-full pt-8 pb-4 px-2">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-green-700 z-0" style={{transform: 'translateY(-50%)'}}></div>
             {timeline[language].map((item, idx) => (
-              <div key={idx} className="relative flex flex-col items-center z-10 w-1/3 px-2">
+              <div key={idx} className="relative flex flex-col items-center z-10 w-1/3 px-2 pt-5">
                 <div className="w-6 h-6 bg-green-400 border-4 border-white rounded-full flex items-center justify-center shadow-lg">
                   <span className="text-xs font-bold text-green-900">{idx+1}</span>
                 </div>
@@ -77,7 +77,7 @@ const About = () => {
                 <div className="w-6 h-6 bg-green-400 border-4 border-white rounded-full flex items-center justify-center shadow-lg absolute -left-3 top-0">
                   <span className="text-xs font-bold text-green-900">{idx+1}</span>
                 </div>
-                <div className="ml-8">
+                <div className="ml-8 pt-10">
                   <div className="text-base font-semibold text-green-200">{item.company}</div>
                   <div className="text-sm text-gray-300">{item.role}</div>
                   <div className="text-xs text-gray-400">{item.period}</div>

@@ -1,6 +1,6 @@
-
 'use client';
 import { useLanguage } from "./LanguageContext";
+import { FaFacebook, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
 
 const Contact = () => {
   const { language } = useLanguage();
@@ -16,6 +16,20 @@ const Contact = () => {
       <a href="mailto:lephuockhai2015@gmail.com" className="contact-button">
         lephuockhai2015@gmail.com
       </a>
+      <div className="flex justify-center gap-6 mt-6">
+        <a href="https://www.facebook.com/khaxilee" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-500">
+          <FaFacebook size={30} />
+        </a>
+        <a href="https://github.com/lephuockhai" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-500">
+          <FaGithub size={30} />
+        </a>
+        <a href="https://www.linkedin.com/in/le-phuoc-khai-8256641b4/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-500">
+          <FaLinkedin size={30} />
+        </a>
+        <a href="tel:+84349495343" className="text-gray-300 hover:text-green-500">
+          <FaPhone size={30} />
+        </a>
+      </div>
     </section>
   );
 };
